@@ -5,12 +5,11 @@ import pymongo
 import requests
 from requests.auth import HTTPBasicAuth
 
-
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["NLP_project"]
 mycol = mydb["elasticsearch"]
 
-def get_json(url, user, password):
+def get_json(url: str, user: str, password: str):
     # Making a get request
     response = requests.get(f'{url}',
                 auth = HTTPBasicAuth(f'{user}', f'{password}'))
@@ -21,7 +20,7 @@ json_answer = get_json(
     "https://es1.mediaquantum.eu/streamua/streamua/_search?pretty=true&q=domain:*.il",
     "elastic",
     "changeme")
-    
+
 json_answer = json.loads(json_answer)
 json_answer = json_answer['hits']['hits'] # Ask slava what does max_score and total stand for in hits 
 
