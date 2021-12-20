@@ -12,8 +12,13 @@ def find_abstract(html):
 def find_body(html):
     soup = BeautifulSoup(html, features="html.parser")
     body = soup.find_all("div") or soup.find_all("p")
-    if body:
-        return body
+    
+    text = ''
+    for bod in body:
+        text = text + '\n' + bod.text
+
+    if text:
+        return text
     return None
 
 

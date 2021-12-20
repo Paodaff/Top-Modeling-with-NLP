@@ -2,8 +2,11 @@
 import json
 import pymongo
 import requests
-from requests.auth import HTTPBasicAuth
 from utils import *
+from bs4 import BeautifulSoup, Tag
+from requests.auth import HTTPBasicAuth
+
+
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["NLP_project"]
@@ -47,11 +50,13 @@ for document in json_answer:  # Document keys : ['_id', '_index', '_score', '_so
     body = find_body(html)
     summary = find_summary(html)
 
-    if not checkURL and checkTitle and abstract and summary:
+    if not checkURL and checkTitle and abstract and summary and body:
         mycol.insert_one({
                     "id": document['_id'],
                     "title": document['_source']['title'],
                     "url": document['_source']['url'],
                     "date": document['_source']['date'],
-                    "abstract": abstract
+                    "abstract": abstract,
+                    "body": body,
+                    "summary": summary
         })
