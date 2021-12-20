@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 def find_abstract(html):
     soup = BeautifulSoup(html, "html.parser")
-    abstract = soup.find("h1") or soup.find("h2")
+    abstract = soup.find("h2") or soup.find("h3")
     if abstract:
         return abstract.text
     return None
