@@ -53,7 +53,5 @@ for document in json_answer:  # Document keys : ['_id', '_index', '_score', '_so
                     "title": document['_source']['title'],
                     "url": document['_source']['url'],
                     "date": document['_source']['date'],
-                    "abstract": abstract,
-                    "body": body,
-                    "summary": summary
+                    "abstract": abstract
         })

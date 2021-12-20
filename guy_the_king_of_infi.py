@@ -32,8 +32,6 @@ for doc in mycol.find():
             
             best_option = word[0]
 
-            print()
-
             if best_option['partOfSpeech'] in bad_types:
                 pass
             else:
